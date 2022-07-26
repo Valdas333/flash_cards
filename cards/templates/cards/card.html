@@ -2,7 +2,7 @@
     <h4>{{ card.question }}</h4>
     <p>{{ card.answer }}</p>
     <hr>
-    <a style="color:rgba(155, 146, 120, 0.822);" href="{% url 'card-update' card.id %}" role="button">
+    <a href="{% url 'card-update' card.id %}" role="button">
         ✏️ Edit Card
     </a>
  </article>
