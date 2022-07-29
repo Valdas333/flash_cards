@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 # Create your views here.
 
 
@@ -12,7 +13,12 @@ def sign_up(request):
             login(request, user)
             return redirect('/')
             
-    else: 
-        form = UserRegistrationForm()
+        else: 
+            for key, error in list(form.errors.items()):
+                if key == 'captcha' and error[0] == 'This field is required.':
+                    messages.error(request, 'reCaptcha field validation failed!')
+                    continue
+                messages.error(request, error)
+    form = UserRegistrationForm()
     
     return render(request,'registration/sign_up.html', {'form': form})

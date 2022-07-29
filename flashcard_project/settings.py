@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from .local_settings import secret_key 
+from flashcard_project import local_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret_key
+SECRET_KEY = local_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     'cards.apps.CardsConfig',
     'user.apps.UserConfig',
+    'captcha',
     
 ]
 
@@ -129,3 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+RECAPTCHA_PUBLIC_KEY = local_settings.RECAPTCHA_PUBLIC_KEY
+RECAPTCHA_PRIVATE_KEY = local_settings.RECAPTCHA_PRIVATE_KEY
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

@@ -13,3 +13,4 @@ media
 .history
 *.bak 
 flashcard_project/local_settings.py
+.vscode/launch.json
