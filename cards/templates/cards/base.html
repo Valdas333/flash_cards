@@ -57,8 +57,17 @@
 <body>
     <header>
         <h1>Flashcards App</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="{% url 'sign_up' %}">Register</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="/contact">Contact</a>
+          </nav>
         {% include "cards/navigation.html" %}
     </header>
+
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
